@@ -1,147 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Concentric Distance Simulator</title>
+  </head>
 
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    >
-
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<div id="app">
-
-    <aside class="sidebar">
-
+  <body>
+    <div id="app">
+      <aside class="sidebar">
         <div class="brand">
-            <div class="brand-title">DISTANCE MAPPING</div>
-            <div class="brand-subtitle">CONCENTRIC SIMULATOR</div>
+          <div class="brand-title">DISTANCE MAPPING</div>
+          <div class="brand-subtitle">CONCENTRIC SIMULATOR</div>
         </div>
 
         <section class="panel">
+          <div class="panel-title">PRESETS</div>
 
-            <div class="panel-title">PRESETS</div>
+          <div class="preset-buttons">
+            <button class="preset-button" data-preset="davyCrockett">
+              <span>M-388 Davy Crockett</span>
+              <small>Tactical Micro-Nuke (0.02 kt)</small>
+            </button>
 
-            <div class="preset-buttons">
+            <button class="preset-button active" data-preset="littleBoy">
+              <span>Little Boy (Hiroshima)</span>
+              <small>Fission Device (15 kt)</small>
+            </button>
 
-                <button class="preset-button" data-preset="micro">
-                    <span>MICRO</span>
-                    <small>Compact distance profile</small>
-                </button>
+            <button class="preset-button" data-preset="w88ICBM">
+              <span>W88 Modern ICBM</span>
+              <small>Modern ICBM (475 kt)</small>
+            </button>
 
-                <button class="preset-button active" data-preset="standard">
-                    <span>STANDARD</span>
-                    <small>Balanced distance profile</small>
-                </button>
+            <button class="preset-button" data-preset="castleBravo">
+              <span>Castle Bravo</span>
+              <small>Thermonuclear (15 Mt)</small>
+            </button>
 
-                <button class="preset-button" data-preset="large">
-                    <span>LARGE</span>
-                    <small>Extended distance profile</small>
-                </button>
-
-                <button class="preset-button" data-preset="extreme">
-                    <span>EXTREME</span>
-                    <small>Wide-area distance profile</small>
-                </button>
-
-                <button class="preset-button" data-preset="maximum">
-                    <span>MAXIMUM</span>
-                    <small>Maximum simulation range</small>
-                </button>
-
-            </div>
-
+            <button class="preset-button" data-preset="tsarBomba">
+              <span>Tsar Bomba</span>
+              <small>Limit Device (50 Mt)</small>
+            </button>
+          </div>
         </section>
 
         <section class="panel">
-
-            <div class="panel-title">DISTANCE ZONES</div>
-
-            <div id="zone-list" class="zone-list"></div>
-
+          <div class="panel-title">DISTANCE ZONES</div>
+          <div id="zone-list" class="zone-list"></div>
         </section>
 
         <section class="panel target-panel">
+          <div class="panel-title">TARGET</div>
 
-            <div class="panel-title">TARGET</div>
+          <div id="target-status" class="target-status">
+            NO TARGET SELECTED
+          </div>
 
-            <div id="target-status" class="target-status">
-                NO TARGET SELECTED
-            </div>
+          <div class="coordinate-row">
+            <span>LAT</span>
+            <strong id="latitude">--</strong>
+          </div>
 
-            <div class="coordinate-row">
-                <span>LAT</span>
-                <strong id="latitude">--</strong>
-            </div>
-
-            <div class="coordinate-row">
-                <span>LNG</span>
-                <strong id="longitude">--</strong>
-            </div>
-
+          <div class="coordinate-row">
+            <span>LNG</span>
+            <strong id="longitude">--</strong>
+          </div>
         </section>
 
         <div class="sidebar-bottom">
+          <div id="discord-status" class="discord-status">
+            DISCORD SDK: CONNECTING
+          </div>
 
-            <div id="discord-status" class="discord-status">
-                DISCORD ACTIVITY: ONLINE
-            </div>
-
-            <button
-                id="activate-button"
-                class="activate-button"
-                disabled
-            >
-                ACTIVATE
-            </button>
-
+          <button
+            id="activate-button"
+            class="activate-button"
+            disabled
+          >
+            ACTIVATE
+          </button>
         </div>
+      </aside>
 
-    </aside>
-
-    <main class="map-area">
-
+      <main class="map-area">
         <div class="search-container">
+          <form id="search-form">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search for a city..."
+              autocomplete="off"
+            />
 
-            <form id="search-form">
-
-                <input
-                    id="search-input"
-                    type="text"
-                    placeholder="Search for a city..."
-                    autocomplete="off"
-                >
-
-                <button type="submit">
-                    SEARCH
-                </button>
-
-            </form>
-
+            <button type="submit">
+              SEARCH
+            </button>
+          </form>
         </div>
 
         <div id="map"></div>
 
         <div class="map-info">
-            CLICK THE MAP TO SELECT A TARGET
+          CLICK THE MAP TO SELECT A TARGET
         </div>
 
-    </main>
+        <div id="shockwave" class="shockwave">
+          <div class="shockwave-ring ring-1"></div>
+          <div class="shockwave-ring ring-2"></div>
+          <div class="shockwave-ring ring-3"></div>
+          <div class="shockwave-core"></div>
+        </div>
+      </main>
+    </div>
 
-</div>
-
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-></script>
-
-<script src="app.js"></script>
-
-</body>
+    <script type="module" src="/src/app.js"></script>
+  </body>
 </html>
