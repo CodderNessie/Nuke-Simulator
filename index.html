@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Concentric Distance Simulator</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-title">DISTANCE MAPPING</div>
+            <div class="brand-subtitle">CONCENTRIC SIMULATOR</div>
+        </div>
+
+        <section class="panel">
+
+            <div class="panel-title">PRESETS</div>
+
+            <div class="preset-buttons">
+
+                <button class="preset-button" data-preset="micro">
+                    <span>MICRO</span>
+                    <small>Compact distance profile</small>
+                </button>
+
+                <button class="preset-button active" data-preset="standard">
+                    <span>STANDARD</span>
+                    <small>Balanced distance profile</small>
+                </button>
+
+                <button class="preset-button" data-preset="large">
+                    <span>LARGE</span>
+                    <small>Extended distance profile</small>
+                </button>
+
+                <button class="preset-button" data-preset="extreme">
+                    <span>EXTREME</span>
+                    <small>Wide-area distance profile</small>
+                </button>
+
+                <button class="preset-button" data-preset="maximum">
+                    <span>MAXIMUM</span>
+                    <small>Maximum simulation range</small>
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="panel">
+
+            <div class="panel-title">DISTANCE ZONES</div>
+
+            <div id="zone-list" class="zone-list"></div>
+
+        </section>
+
+        <section class="panel target-panel">
+
+            <div class="panel-title">TARGET</div>
+
+            <div id="target-status" class="target-status">
+                NO TARGET SELECTED
+            </div>
+
+            <div class="coordinate-row">
+                <span>LAT</span>
+                <strong id="latitude">--</strong>
+            </div>
+
+            <div class="coordinate-row">
+                <span>LNG</span>
+                <strong id="longitude">--</strong>
+            </div>
+
+        </section>
+
+        <div class="sidebar-bottom">
+
+            <div id="discord-status" class="discord-status">
+                DISCORD ACTIVITY: ONLINE
+            </div>
+
+            <button
+                id="activate-button"
+                class="activate-button"
+                disabled
+            >
+                ACTIVATE
+            </button>
+
+        </div>
+
+    </aside>
+
+    <main class="map-area">
+
+        <div class="search-container">
+
+            <form id="search-form">
+
+                <input
+                    id="search-input"
+                    type="text"
+                    placeholder="Search for a city..."
+                    autocomplete="off"
+                >
+
+                <button type="submit">
+                    SEARCH
+                </button>
+
+            </form>
+
+        </div>
+
+        <div id="map"></div>
+
+        <div class="map-info">
+            CLICK THE MAP TO SELECT A TARGET
+        </div>
+
+    </main>
+
+</div>
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
